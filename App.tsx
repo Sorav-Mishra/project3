@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontWeight: 900,
     textAlign: 'center',
     color: 'white',
-    // alignContent: 'center',
+    alignContent: 'center',
     // justifyContent: 'center',
     // marginBlockStart: 15,
   },
