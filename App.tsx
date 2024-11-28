@@ -1,117 +1,72 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+//import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+//import Button from 'react-native';
+function App(): JSX.Element {
+  const [ramdomBackgroundColor, setRandomBackgroundColor] = useState('#ffffff');
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+  const generateColor = () => {
+    const hexRange = '0987654321ABCDEF';
+    let color = '#';
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+    for (let i = 0; i < 6; i++) {
+      color += hexRange[Math.floor(Math.random() * 16)];
+    }
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    setRandomBackgroundColor(color);
+    // changeNavigationBarColor(color, true);
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <>
+      <SafeAreaView>
+        <StatusBar backgroundColor={ramdomBackgroundColor} />
+        <View style={[styles.bg, {backgroundColor: ramdomBackgroundColor}]}>
+          <TouchableOpacity onPress={generateColor}>
+            <View style={styles.btn}>
+              <Text style={styles.text}>Press me</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
+  text: {
+    marginBlockStart: 10,
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: 900,
+    textAlign: 'center',
+    color: 'white',
+    // alignContent: 'center',
+    // justifyContent: 'center',
+    // marginBlockStart: 15,
   },
-  highlight: {
-    fontWeight: '700',
+
+  btn: {
+    height: 50,
+    width: 120,
+    borderRadius: 10,
+    backgroundColor: 'orange',
+    marginBlockStart: '100%',
+    marginHorizontal: '35%',
+  },
+
+  bg: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'gray',
   },
 });
 
