@@ -105,6 +105,9 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    // Add this line inside the android block
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 }
 
 dependencies {
@@ -116,4 +119,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+
+    // Add react-native-vector-icons dependency
+    implementation project(':react-native-vector-icons')
+
 }
