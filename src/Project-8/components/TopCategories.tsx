@@ -41,7 +41,10 @@ import productImg from '../Images/Chyawanprash-1kg.webp';
 import product1Img from '../Images/chywanprasha-Sugar-free-f-1-kg_3fb0f065-6a49-42e6-98d8-ed226a217162.webp';
 import product2Img from '../Images/Honey_-_1kg__Front_072d522e-c792-464a-b39c-1916f0112d7c.webp';
 import product3Img from '../Images/Amla_Candy_Front_550x.webp';
-//import SpotLight from './SpotLight';
+
+// SpotLight Images
+import one1 from '../Images/Jiva-Spotlight-0.webp';
+import two2 from '../Images/Jiva-Spotlight.webp';
 
 const TopCategories = () => {
   const images = [
@@ -123,6 +126,8 @@ const TopCategories = () => {
   };
 
   const Products = [product, product1, product2, product3];
+
+  const Spot = [one1, two2];
 
   return (
     <>
@@ -221,11 +226,29 @@ const TopCategories = () => {
               <Text style={styles.salePrice}>Rs. {pro.pricing.salePrice} </Text>
               <Text style={styles.discount}>({pro.pricing.discount})</Text>
             </Text>
-            <Button title="Add to Cart" color="#000" />
+            <Button title="Add to Cart" color="#c74919" />
           </View>
         ))}
+
+        {/** Services in Spotlight section */}
+
+        <View>
+          <Text style={styles.TopCategory1}>Services in Spotlight</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.spotlightContainer}>
+            {Spot.map((sp, index) => (
+              <Image
+                key={index}
+                source={sp}
+                style={styles.spotlightImage}
+                resizeMode="contain"
+              />
+            ))}
+          </ScrollView>
+        </View>
       </View>
-      {/* <SpotLight /> */}
     </>
   );
 };
@@ -366,16 +389,38 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   productPrice: {
-    fontSize: 14,
+    fontSize: 25,
     color: '#333',
     marginBottom: 15,
   },
   salePrice: {
     fontWeight: 'bold',
-    color: '#000',
+    color: '#c74919',
   },
   discount: {
+    fontSize: 14,
     color: '#f00',
+  },
+  topCategory: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+
+  spotlightContainer: {
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBlockStart: 15,
+  },
+  spotlightImage: {
+    height: 350,
+    width: 350,
+    marginHorizontal: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
   },
 });
 
